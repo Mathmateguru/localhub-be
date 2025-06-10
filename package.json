@@ -1,0 +1,19 @@
+{
+  "name": "localhub",
+  "version": "1.0.0",
+  "description": "sssss",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon run ./server/index.js"
+  },
+  "author": "Socrate, Jelili and Hammed",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
