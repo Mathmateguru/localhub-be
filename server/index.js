@@ -2,6 +2,7 @@ import express from 'express'
 import connectDB from './db.js'
 import dotenv from 'dotenv'
 import { createCommunity, getCommunties } from './controllers/community.js'
+import { createPost, getPost } from './controllers/post.js'
 dotenv.config()
 const app = express()
 
@@ -19,6 +20,9 @@ app.get('/', (req, res) => {
 
 app.post('/community', createCommunity)
 app.get('/community', getCommunties)
+app.post('/post', createPost)
+app.get('/post', getPost)
+
 
 //app.get
 // app.post('/user', (req, res) => {})
