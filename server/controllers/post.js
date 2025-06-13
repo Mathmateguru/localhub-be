@@ -1,16 +1,16 @@
-import CommunityPost from '../models/postSchema.js';
+import Post from '../models/postSchema.js';
 
 
 export const createPost = async (req, res) => {
     const { title, content} = req.body;
     try {
 
-        const newCommunityPost = await CommunityPost.post({
+        const newPost = await Post.create({
             title,
             content
             });
         res.status(201)
-            .send({ message: 'Community posted successfully', data: newCommunityPost });
+            .send({ message: 'Community posted successfully', data: newPost });
     } catch (error) {
         res.status(500).send({ message: 'Error posting community', error });
     }
@@ -18,9 +18,9 @@ export const createPost = async (req, res) => {
 
 export const getPost = async (req, res) => {
     try {
-        const communitiesPost= await CommunityPost.find();
-        res.status(200).send({ message: 'Communities post retrieved successfully', data: communitiesPost });
+        const post= await Post.find();
+        res.status(200).send({ message: 'Post retrieved successfully', data: post });
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving communities post', error });
+        res.status(500).send({ message: 'Error retrieving post', error });
     }
 }

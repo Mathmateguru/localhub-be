@@ -5,8 +5,7 @@ const postSchema = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
-  },
+    },
   content: {
     type: String,
     required: true,
@@ -15,5 +14,5 @@ const postSchema = new Schema({
 });
 
 
-const CommunityPost = mongoose.model('CommunityPost', postSchema);
-export default CommunityPost;
+const Post = mongoose.model('Post', postSchema);
+export default Post;
