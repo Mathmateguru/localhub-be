@@ -11,7 +11,7 @@ export const createUser = async (req, res) => {
             email
             });
         res.status(201)
-            .send({ message: 'Community user created successfully', data: newUser});
+            .send({ message: ' User created successfully', data: newUser});
     } catch (error) {
         res.status(500).send({ message: 'Error creating  user', error });
     }
