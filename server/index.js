@@ -2,7 +2,7 @@ import express from 'express'
 import connectDB from './db.js'
 import dotenv from 'dotenv'
 import { createCommunity, getCommunties, getSingleCommunity, updateCommunity, deleteCommunity} from './controllers/community.js'
-import { createPost, deletePost, getPost, updatePost, getSinglePost} from './controllers/post.js'
+import { createPost, getPost, getSinglePost} from './controllers/post.js'
 import { createUser, getUsers} from './controllers/user.js'
 dotenv.config()
 const app = express()
