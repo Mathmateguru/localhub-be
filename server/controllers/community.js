@@ -54,7 +54,7 @@ export const updateCommunity = async (req, res) => {
     }
 }
 
-
+ 
  export const deleteCommunity = async (req, res) => {
     const { id } = req.params;
     try {
