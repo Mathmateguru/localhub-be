@@ -28,10 +28,8 @@ app.delete('/community/:id', deleteCommunity)
 app.post('/post', createPost)
 app.get('/post', getPost)
 app.get('/post/:id', getSinglePost)
-
-
-// app.get('/updatePost', updatePost) 
-// app.delete('/post/:id', deletePost)
+app.get('/updatePost', updatePost) 
+app.delete('/post/:id', deletePost)
 
 
 app.post('/user', createUser)
