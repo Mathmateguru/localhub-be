@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { createCommunity, getCommunties, getSingleCommunity, updateCommunity, deleteCommunity} from '../controllers/community.js'
 import { createPost, getPost, getSinglePost, updatePost, deletePost} from '../controllers/post.js'
-import { createUser, getSingleUser, getUsers, updateUser, deleteUser} from '../controllers/user.js'
+import { signup, getSingleUser, getUsers, updateUser, deleteUser} from '../controllers/user.js'
 
 const router = Router()
 
@@ -20,8 +20,9 @@ router.get('/post/:id', getSinglePost)
       .delete('/post/:id', deletePost);
 
 
-router.post('/user', createUser)
-      .get('/user', getUsers);
+router.post('/signup', signup);
+
+router .get('/user', getUsers);
 
 router.get('/user/:id', getSingleUser)
       .put('/user/:id', updateUser)

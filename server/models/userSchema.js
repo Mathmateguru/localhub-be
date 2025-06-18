@@ -16,10 +16,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minLength: 3,
-  }
+  },
 
+  picture: {
+    type: String,
+    default: ''
+  },
   
-});
+}, {timestamps: true });
 
 
 const User = mongoose.model('User', userSchema);
