@@ -11,7 +11,7 @@ export const createCommunity = async (req, res) => {
             image
         });
         res.status(201)
-            .send({ message: 'Community created successfully', data: newCommunity });
+           .send({ message: 'Community created successfully', data: newCommunity });
     } catch (error) {
         res.status(500).send({ message: 'Error creating community', error });
     }

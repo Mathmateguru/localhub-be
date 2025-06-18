@@ -15,6 +15,7 @@ const communitySchema = new Schema({
   image: {
     type: String,
   },
+
   
 //   members: [{
 //     type: Schema.Types.ObjectId,
