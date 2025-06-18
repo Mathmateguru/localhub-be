@@ -25,7 +25,7 @@ export const getPost = async (req, res) => {
     }
 }
 
-export  const getSinglePost = async (req, res) => {
+export const getSinglePost = async (req, res) => {
     const { id } = req.params;
     try {
         const post = await Post.findById(id);
