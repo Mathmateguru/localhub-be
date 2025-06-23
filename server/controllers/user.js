@@ -1,20 +1,23 @@
 import User from '../models/userSchema.js';
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv';
+dotenv.config()
 
 export const signup = async (req, res) => {
     const saltRounds = 10;
     const { name, email, picture, password } = req.body;
-    if(!name || !password || !email){
-        res.status(400).send({message: 'Please include all fields', status: 'error'})
+    if (!name || !password || !email) {
+        res.status(400).send({ message: 'Please include all fields', status: 'error' })
     }
 
     try {
         // check if the user with same email is already signed up
         const userExist = await User.findOne({ email })
-        
-         if(userExist){
-            res.status(400).send({message: 'user already exist', status: 'error'})
-         }
+
+        if (userExist) {
+            res.status(400).send({ message: 'user already exist', status: 'error' })
+        }
 
 
         // creating the user
@@ -25,7 +28,40 @@ export const signup = async (req, res) => {
             picture,
             password: hashedPassword
         })
-        res.status(201).send({ message: ' User created successfully', data: newUser });
+        res.status(201).send({ message: 'User created successfully', data: newUser, status: 'success' });
+
+    } catch (e) {
+        res.status(500).send({ message: 'error signing up', e })
+    }
+
+}
+
+export const login = async (req, res) => {
+    try {
+        // check user isexist? if no throw error, if yes next stage 
+        // check if pwd is correct, if no - throw error, if yes create token 
+        const { email, password } = req.body;
+
+        const user = await User.findOne({ email })
+
+
+        if (!user) {
+            res.stautus(400).send({ message: ' User not found' })
+        }
+        const passwordIsCorrect = await bcrypt.compare(password, user.password)
+
+        if (!passwordIsCorrect) {
+            res.stautus(400).send({ message: ' User not found' })
+        }
+
+        const token = jwt.sign({ id: user.id, name: user.name }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(200).send({
+            message: 'user successfully login',
+            status: 'success',
+            data: user,
+            accessToken: token
+        })
 
     } catch (e) {
         res.status(500).send({ message: 'error signing up', e })
