@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { createCommunity, getCommunties, getSingleCommunity, updateCommunity, deleteCommunity} from '../controllers/community.js'
 import { createPost, getPost, getSinglePost, updatePost, deletePost} from '../controllers/post.js'
-import { signup, getSingleUser, getUsers, updateUser, deleteUser} from '../controllers/user.js'
+import { signup, login,  getSingleUser, getUsers, updateUser, deleteUser} from '../controllers/user.js'
 
 const router = Router()
 
@@ -21,6 +21,7 @@ router.get('/post/:id', getSinglePost)
 
 
 router.post('/signup', signup);
+router.post('/login', login);
 
 router .get('/user', getUsers);
 
