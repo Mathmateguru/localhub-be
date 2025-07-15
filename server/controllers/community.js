@@ -2,13 +2,15 @@ import Community from '../models/communitySchema.js';
 
 
 export const createCommunity = async (req, res) => {
-    const { name, description, location, image } = req.body;
+    const { name, description, isPublic= true } = req.body;
+    
     try {
         const newCommunity = await Community.create({
             name,
             description,
-            location,
-            image
+            creator: req.decoded.id,
+            image: req.file?.path || "",
+            isPublic
         });
         res.status(201)
            .send({ message: 'Community created successfully', data: newCommunity });
@@ -29,7 +31,7 @@ export const getCommunties = async (req, res) => {
 export  const getSingleCommunity = async (req, res) => {
     const { id } = req.params;
     try {
-        const community = await Community.findById(id);
+        const community = await Community.findById(id).populate('creator', ' name email');
         
          res.status(200).send({ message: 'Community retrieved successfully', data: community });
     } catch (error) {

@@ -41,17 +41,16 @@ export const login = async (req, res) => {
         // check user isexist? if no throw error, if yes next stage 
         // check if pwd is correct, if no - throw error, if yes create token 
         const { email, password } = req.body;
-
         const user = await User.findOne({ email })
 
-
+  
         if (!user) {
-            res.stautus(400).send({ message: ' User not found' })
+            res.status(400).send({ message: ' User not found' })
         }
         const passwordIsCorrect = await bcrypt.compare(password, user.password)
 
         if (!passwordIsCorrect) {
-            res.stautus(400).send({ message: ' User not found' })
+            res.status(400).send({ message: ' User not found' })
         }
 
         const token = jwt.sign({ id: user.id, name: user.name }, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -64,27 +63,11 @@ export const login = async (req, res) => {
         })
 
     } catch (e) {
-        res.status(500).send({ message: 'error signing up', e })
+        res.status(500).send({ message: 'error logging in', e })
     }
 
 }
 
-export const createUser = async (req, res) => {
-    const { name, password, email } = req.body;
-
-    try {
-
-        const newUser = await User.create({
-            name,
-            password,
-            email
-        });
-        res.status(201)
-            .send({ message: ' User created successfully', data: newUser });
-    } catch (error) {
-        res.status(500).send({ message: 'Error creating  user', error });
-    }
-}
 
 export const getUsers = async (req, res) => {
     try {

@@ -11,20 +11,28 @@ const communitySchema = new Schema({
     type: String,
     required: true,
   },
-  location: String,
   image: {
     type: String,
   },
+  creator: {
+   type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
 
-  
-//   members: [{
-//     type: Schema.Types.ObjectId,
-//     ref: 'User',git 
-//   }],
-//   createdAt: {
-//     type: Date,
-//     default: Date.now,
-//   },
+  members: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+
+  posts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Post'
+  }],
+
+  isPublic: {
+    type: Boolean,
+    default: true
+  }
 });
 
 

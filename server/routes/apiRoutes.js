@@ -2,11 +2,12 @@ import { Router } from 'express';
 import { createCommunity, getCommunties, getSingleCommunity, updateCommunity, deleteCommunity} from '../controllers/community.js'
 import { createPost, getPost, getSinglePost, updatePost, deletePost} from '../controllers/post.js'
 import { signup, login,  getSingleUser, getUsers, updateUser, deleteUser} from '../controllers/user.js'
-
+import {authMiddleware} from '../middlewares/auth.js'
+import upload from '../middlewares/cloudinaryStorage.js'
 const router = Router()
 
-router.post('/community', createCommunity)
-      .get('/community', getCommunties);
+router.post('/community', authMiddleware, upload.single("image"),  createCommunity)
+      .get('/community', authMiddleware, getCommunties);
 
 router.get('/community/:id', getSingleCommunity)
       .put('/community/:id', updateCommunity)
