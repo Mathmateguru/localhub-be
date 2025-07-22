@@ -1,7 +1,8 @@
 
 export const uploudImage = (req, res) => {
 
-  if (!req?.file?.path) {
+ try {
+ if (!req?.file?.path) {
     res.status(400).json({ error: 'Image upload failed' });
   } else {
     res.status(201).send({
@@ -10,6 +11,10 @@ export const uploudImage = (req, res) => {
     })
   }
 
+ } catch(e){
+   res.status(400).send({error: e})
+  
+ }
 
 }
 
