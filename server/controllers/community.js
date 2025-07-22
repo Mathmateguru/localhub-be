@@ -2,14 +2,13 @@ import Community from '../models/communitySchema.js';
 
 
 export const createCommunity = async (req, res) => {
-    const { name, description, isPublic= true } = req.body;
-    
+    const { name, description, isPublic= true, image='' } = req.body;
     try {
         const newCommunity = await Community.create({
             name,
             description,
             creator: req.decoded.id,
-            image: req.file?.path || "",
+            image,
             isPublic
         });
         res.status(201)

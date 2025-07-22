@@ -4,9 +4,10 @@ import { createPost, getPost, getSinglePost, updatePost, deletePost} from '../co
 import { signup, login,  getSingleUser, getUsers, updateUser, deleteUser} from '../controllers/user.js'
 import {authMiddleware} from '../middlewares/auth.js'
 import upload from '../middlewares/cloudinaryStorage.js'
+import { uploudImage } from '../controllers/common.js';
 const router = Router()
 
-router.post('/community', authMiddleware, upload.single("image"),  createCommunity)
+router.post('/community', authMiddleware, createCommunity)
       .get('/community', authMiddleware, getCommunties);
 
 router.get('/community/:id', getSingleCommunity)
@@ -30,6 +31,6 @@ router.get('/user/:id', getSingleUser)
       .put('/user/:id', updateUser)
       .delete('/user/:id', deleteUser);
 
-
+router.post('/upload-image', authMiddleware, upload.single("image"), uploudImage)
 
 export default router
