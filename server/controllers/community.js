@@ -20,7 +20,7 @@ export const createCommunity = async (req, res) => {
 
 export const getCommunties = async (req, res) => {
     try {
-        const communities = await Community.find();
+        const communities = await Community.find().populate('posts');
         res.status(200).send({ message: 'Communities retrieved successfully', data: communities });
     } catch (error) {
         res.status(500).send({ message: 'Error retrieving communities', error });

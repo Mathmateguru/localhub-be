@@ -10,7 +10,7 @@ const port = process.env. PORT || 4000
 connectDB()
 
 app.use(cors())
-app.use(express.json()) // Middleware to parse JSON bodies
+app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // Middleware to parse URL-encoded bodies
 app.get('/', (req, res) => {
     res.send({message: 'Welcome to the Community API'})

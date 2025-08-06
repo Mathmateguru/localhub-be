@@ -53,7 +53,7 @@ export const login = async (req, res) => {
             res.status(400).send({ message: ' User not found' })
         }
 
-        const token = jwt.sign({ id: user.id, name: user.name }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id, name: user.name }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.status(200).send({
             message: 'user successfully login',

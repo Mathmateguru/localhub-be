@@ -12,10 +12,11 @@ router.post('/community', authMiddleware, createCommunity)
 
 router.get('/community/:id', getSingleCommunity)
       .put('/community/:id', updateCommunity)
-      .delete('/community/:id', deleteCommunity);
+      .delete('/community/:id', deleteCommunity)
+      .get('/community/:id/posts', getPost);
 
-router.post('/post', createPost)
-      .get('/post', getPost);
+
+router.post('/post', authMiddleware, createPost)
 
 router.get('/post/:id', getSinglePost)
       .get('/post/:id', updatePost)
