@@ -33,7 +33,7 @@ const communitySchema = new Schema({
     type: Boolean,
     default: true
   }
-});
+}, {timestamps: true });
 
 
 const Community = mongoose.model('Community', communitySchema);

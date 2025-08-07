@@ -18,10 +18,10 @@ export const createPost = async (req, res) => {
 	}
 }
 
-export const getPost = async (req, res) => {
+export const getCommunityPosts = async (req, res) => {
 	const {id} = req.params
 	try {
-		const posts = await Post.find({community: id});
+		const posts = await Post.find({community: id}).populate('user', '_id name');
 		res.status(200).send({ message: 'Post retrieved successfully', data: posts });
 	} catch (error) {
 		res.status(500).send({ message: 'Error retrieving post', error });

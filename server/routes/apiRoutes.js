@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { createCommunity, getCommunties, getSingleCommunity, updateCommunity, deleteCommunity} from '../controllers/community.js'
-import { createPost, getPost, getSinglePost, updatePost, deletePost} from '../controllers/post.js'
+import { createPost, getSinglePost, updatePost, deletePost, getCommunityPosts} from '../controllers/post.js'
 import { signup, login,  getSingleUser, getUsers, updateUser, deleteUser} from '../controllers/user.js'
 import {authMiddleware} from '../middlewares/auth.js'
 import upload from '../middlewares/cloudinaryStorage.js'
@@ -13,7 +13,7 @@ router.post('/community', authMiddleware, createCommunity)
 router.get('/community/:id', getSingleCommunity)
       .put('/community/:id', updateCommunity)
       .delete('/community/:id', deleteCommunity)
-      .get('/community/:id/posts',authMiddleware, getPost);
+      .get('/community/:id/posts',authMiddleware, getCommunityPosts);
 
 
 router.post('/post', authMiddleware, createPost)
