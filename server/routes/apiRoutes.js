@@ -13,7 +13,7 @@ router.post('/community', authMiddleware, createCommunity)
 router.get('/community/:id', getSingleCommunity)
       .put('/community/:id', updateCommunity)
       .delete('/community/:id', deleteCommunity)
-      .get('/community/:id/posts', getPost);
+      .get('/community/:id/posts',authMiddleware, getPost);
 
 
 router.post('/post', authMiddleware, createPost)
