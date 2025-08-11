@@ -2,13 +2,13 @@ import Post from '../models/postSchema.js';
 
 
 export const createPost = async (req, res) => {
-	const { title, content, community } = req.body;
+	const { title, content, communityId } = req.body;
 	const { userId } = req.decoded
 	try {
 		const newPost = await Post.create({
 			title,
 			content,
-			community,
+			community: communityId,
 			user: userId
 		});
 		res.status(201)

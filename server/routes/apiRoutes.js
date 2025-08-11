@@ -16,8 +16,7 @@ router.get('/community/:id', getSingleCommunity)
       .get('/community/:id/posts',authMiddleware, getCommunityPosts);
 
 
-router.post('/post', authMiddleware, createPost)
-
+router.post('/posts', authMiddleware, createPost)
 router.get('/post/:id', getSinglePost)
       .get('/post/:id', updatePost)
       .delete('/post/:id', deletePost);
