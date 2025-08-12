@@ -65,3 +65,18 @@ export const updateCommunity = async (req, res) => {
         res.status(500).send({ message: 'Error deleting community', error });
     }
 }
+
+export const joinCommunity = async(req, res) => {
+     const { communityId } = req.params;
+     const {userId} = req.decoded;
+     try {
+        const community = await Community.findById(communityId)
+        community.members.push(userId);
+        community.save()
+        res.status(200).send({ message: 'Successfully add user to community' })
+
+     } catch (error) {
+        res.status(500).send({ message: 'Error joining community', error });
+    }
+
+}

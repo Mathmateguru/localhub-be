@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createCommunity, getCommunties, getSingleCommunity, updateCommunity, deleteCommunity} from '../controllers/community.js'
+import { createCommunity, getCommunties, getSingleCommunity, updateCommunity, deleteCommunity, joinCommunity} from '../controllers/community.js'
 import { createPost, getSinglePost, updatePost, deletePost, getCommunityPosts} from '../controllers/post.js'
 import { signup, login,  getSingleUser, getUsers, updateUser, deleteUser} from '../controllers/user.js'
 import {authMiddleware} from '../middlewares/auth.js'
@@ -13,7 +13,8 @@ router.post('/community', authMiddleware, createCommunity)
 router.get('/community/:id', getSingleCommunity)
       .put('/community/:id', updateCommunity)
       .delete('/community/:id', deleteCommunity)
-      .get('/community/:id/posts',authMiddleware, getCommunityPosts);
+      .get('/community/:id/posts',authMiddleware, getCommunityPosts)
+      .patch('/community/:communityId/join', authMiddleware, joinCommunity)
 
 
 router.post('/posts', authMiddleware, createPost)
